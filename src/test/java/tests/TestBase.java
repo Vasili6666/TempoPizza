@@ -3,11 +3,16 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import helpers.Attach;
 
 import java.util.Map;
+
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.hasWebDriverStarted;
 
 public class TestBase {
 
@@ -15,10 +20,8 @@ public class TestBase {
     public static final String BROWSER = System.getProperty("browser", "chrome");
     public static final String BROWSER_VERSION = System.getProperty("version", "");
     public static final String BROWSER_SIZE = System.getProperty("windowSize", "1920x1080");
-    public static final String REMOTE_DRIVER_URL = System.getProperty("remoteDriverUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+    public static final String REMOTE_DRIVER_URL = System.getProperty("remoteDriverUrl", "");
     public static final int TIMEOUT = Integer.parseInt(System.getProperty("timeout", "5000"));
-
-
 
     @BeforeAll
     static void beforeAll() {
@@ -29,7 +32,7 @@ public class TestBase {
         Configuration.timeout = TIMEOUT;
         Configuration.pageLoadStrategy = "eager";
 
-       /* if (!REMOTE_DRIVER_URL.isEmpty()) {
+        if (!REMOTE_DRIVER_URL.isEmpty()) {
             Configuration.remote = REMOTE_DRIVER_URL;
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -40,17 +43,22 @@ public class TestBase {
             Configuration.browserCapabilities = capabilities;
         }
 
-        SelenideLogger.addListener("allure", new AllureSelenide());
-        System.out.println("Using remote WebDriver URL: " + Configuration.remote);
-*/
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
-    /*@AfterEach
+    @AfterEach
     void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-    }*/
+        if (hasWebDriverStarted()) {   // проверяем, жив ли драйвер
+            Attach.screenshotAs("Last screenshot");
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+            Attach.addVideo();
+            closeWebDriver();          // закрываем браузер после всех вложений
+        }
+    }
 
+    @AfterAll
+    static void afterAll() {
+        closeWebDriver();
+    }
 }

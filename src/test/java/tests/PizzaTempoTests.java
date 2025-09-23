@@ -8,11 +8,6 @@ public class PizzaTempoTests extends TestBase {
 
     Pages pages = new Pages();
 
-    @AfterEach
-    void tearDown() {
-        WebDriverRunner.closeWebDriver();
-    }
-
     @Test
     @DisplayName("Проверка доступности главной страницы")
     void mainPageIsAccessibleTest() {

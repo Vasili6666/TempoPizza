@@ -38,7 +38,7 @@ dependencies {
 }
 
 tasks.withType(Test).configureEach {
-    systemProperties(System.getProperties())
+    //systemProperties(System.getProperties())
 
     useJUnitPlatform()
 
@@ -47,5 +47,12 @@ tasks.withType(Test).configureEach {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
+    }
+}
+
+
+tasks.register('check_test', Test) {
+    useJUnitPlatform {
+        includeTags("check")
     }
 }

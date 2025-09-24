@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import helpers.Attach;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.hasWebDriverStarted;
@@ -48,14 +49,33 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
+        if (hasWebDriverStarted()) {  // проверяем, жив ли драйвер
+            Attach.screenshotAs("Last screenshot");
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+            Attach.addVideo();
+
+            // Даем время для записи видео
+            try {
+                TimeUnit.SECONDS.sleep(3);  // Подождать 3 секунды, чтобы видео успело сохраниться
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            closeWebDriver();  // Закрытие WebDriver после добавления вложений
+        }
+    }
+
+    /*@AfterEach
+    void addAttachments() {
         if (hasWebDriverStarted()) {   // проверяем, жив ли драйвер
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             Attach.browserConsoleLogs();
             Attach.addVideo();
-            closeWebDriver();          // закрываем браузер после всех вложений
+            //closeWebDriver();          // закрываем браузер после всех вложений
         }
-    }
+    }*/
 
     @AfterAll
     static void afterAll() {

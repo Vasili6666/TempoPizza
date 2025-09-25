@@ -6,13 +6,13 @@ import pages.Pages;
 
 
 
-@Disabled
+
 public class PizzaTempoTests extends TestBase {
 
     Pages pages = new Pages();
 
     @Test
-    @Disabled
+
     @DisplayName("Проверка доступности главной страницы")
     void mainPageIsAccessible() {
         pages.mainPage.openPage();
@@ -20,7 +20,7 @@ public class PizzaTempoTests extends TestBase {
     }
 
     @Test
-    @Disabled
+
     @DisplayName("Добавление пиццы в корзину")
     void addActionTrojkaToCart() {
         pages.menuPage.openSalePage();
@@ -30,7 +30,7 @@ public class PizzaTempoTests extends TestBase {
     }
 
     @Test
-    @Disabled
+
     @DisplayName("Проверка открытия страницы для регистрации")
     void openRegistrationPage() {
         pages.mainPage.openPage();
@@ -39,7 +39,7 @@ public class PizzaTempoTests extends TestBase {
     }
 
     @Test
-    @Disabled
+
     @DisplayName("Проверка короткого номера телефона Доставки")
     void checkShortPhoneNumber() {
         pages.mainPage.openPage();
@@ -47,7 +47,7 @@ public class PizzaTempoTests extends TestBase {
     }
 
     @Test
-    @Disabled
+
     @DisplayName("Проверка возможности выбора города")
     void checkPossibilityToChangeLocation() {
         pages.mainPage.openPage();

@@ -13,22 +13,9 @@ public class PossibilityToChangeLocationTest extends TestBase{
     @Test
     @DisplayName("Проверка возможности выбора города")
     void checkPossibilityToChangeLocation() {
-        step("Открываем главную страницу", () ->{
-            pages.mainPage.openPage();
-        });
-
-        step("Нажимаем кнопку выбора региона", () ->{
-            pages.mainPage.openChangeCityPopup();
-        });
-
-        step("Проверяем открытие окна выбора региона", () ->{
-            pages.mainPage.checkChangeCityPopup();
-        });
-
-
-
-
-
+       pages.mainPage.openPage();
+       pages.mainPage.openChangeCityPopup();
+       pages.mainPage.checkChangeCityPopup();
 
     }
 }

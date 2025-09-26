@@ -14,13 +14,8 @@ public class ShortPhoneNumberTest extends TestBase{
     @Tag("check")
     @DisplayName("Проверка короткого номера телефона Доставки")
     void checkShortPhoneNumber() {
-        step("Открываем главную страницу", () ->{
-            pages.mainPage.openPage();
-        });
-
-        step("Проверяем наличие короткого номера", () ->{
-            pages.mainPage.checkShortNumber();
-        });
+       pages.mainPage.openPage();
+      pages.mainPage.checkShortNumber();
 
     }
 }

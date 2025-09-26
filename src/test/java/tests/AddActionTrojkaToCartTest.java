@@ -3,14 +3,23 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.Pages;
-
 import static io.qameta.allure.Allure.step;
-
 public class AddActionTrojkaToCartTest extends TestBase{
 
     Pages pages = new Pages();
 
     @Test
+    @DisplayName("Добавление пиццы в корзину")
+    void checkAddActionTrojkaToCartTest() {
+
+        pages.menuPage.openSalePage();
+        pages.menuPage.addTrojkaToCart();
+        pages.cartPage.openCart();
+        pages.cartPage.checkTrojkaInCart();
+    }
+
+
+    /*@Test
     @DisplayName("Добавление пиццы в корзину")
     void checkAddActionTrojkaToCartTest() {
         step("Открываем страницу Акция", () ->{
@@ -28,5 +37,5 @@ public class AddActionTrojkaToCartTest extends TestBase{
             pages.cartPage.checkTrojkaInCart();
         });
 
-    }
+    }*/
 }

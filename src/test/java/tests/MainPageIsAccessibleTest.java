@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.Pages;
-
 import static io.qameta.allure.Allure.step;
 
 public class MainPageIsAccessibleTest extends TestBase {
@@ -14,12 +13,7 @@ public class MainPageIsAccessibleTest extends TestBase {
     @Tag("smoke")
     @DisplayName("Проверка доступности главной страницы")
     void checkMainPageIsAccessibleTest() {
-        step("Открываем главную страницу", () ->{
-            pages.mainPage.openPage();
-        });
-        step("Проверяем загружен ли логотип", () ->{
-            pages.mainPage.checkLogo();
-        });
-
+        pages.mainPage.openPage();
+        pages.mainPage.checkLogo();
     }
 }

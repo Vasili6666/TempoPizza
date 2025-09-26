@@ -51,33 +51,23 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
-        if (hasWebDriverStarted()) {  // проверяем, жив ли драйвер
+        if (hasWebDriverStarted()) {
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             Attach.browserConsoleLogs();
             Attach.addVideo();
 
-            // Даем время для записи видео
+
             try {
-                TimeUnit.SECONDS.sleep(3);  // Подождать 3 секунды, чтобы видео успело сохраниться
+                TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            closeWebDriver();  // Закрытие WebDriver после добавления вложений
+            closeWebDriver();  
         }
     }
 
-    /*@AfterEach
-    void addAttachments() {
-        if (hasWebDriverStarted()) {   // проверяем, жив ли драйвер
-            Attach.screenshotAs("Last screenshot");
-            Attach.pageSource();
-            Attach.browserConsoleLogs();
-            Attach.addVideo();
-            //closeWebDriver();          // закрываем браузер после всех вложений
-        }
-    }*/
 
     @AfterAll
     static void afterAll() {

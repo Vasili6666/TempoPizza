@@ -19,7 +19,7 @@ public class TestBase {
 
     public static final String BASE_URL = System.getProperty("baseUrl", "https://www.pizzatempo.by");
     public static final String BROWSER = System.getProperty("browser", "chrome");
-    public static final String BROWSER_VERSION = System.getProperty("version", "");
+    public static final String BROWSER_VERSION = System.getProperty("version", "127");
     public static final String BROWSER_SIZE = System.getProperty("windowSize", "1920x1080");
     //public static final String REMOTE_DRIVER_URL = System.getProperty("remoteDriverUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
 

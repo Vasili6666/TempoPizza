@@ -11,6 +11,8 @@ import static com.codeborne.selenide.Condition.*;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.text;
 
@@ -40,7 +42,7 @@ public class MainPage {
 
     @Step("Открываем страницу регистрации")
     public void openRegistrationPage() {
-        registrationLink.click();
+        registrationLink.shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
     @Step("Проверяем наличие короткого номера доставки")
@@ -50,7 +52,7 @@ public class MainPage {
 
     @Step("Открываем окно смены города доставки")
     public void openChangeCityPopup() {
-        regionalLink.click();
+        regionalLink.shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
     @Step("Проверяем, что открылось окно смены города")

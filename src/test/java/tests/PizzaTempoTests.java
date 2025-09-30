@@ -1,57 +1,61 @@
 package tests;
 
-import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
-import pages.Pages;
-
-
+import pages.CartPage;
+import pages.MainPage;
+import pages.MenuPage;
+import pages.RegistrationPage;
 
 
 public class PizzaTempoTests extends TestBase {
 
-    Pages pages = new Pages();
+
+    MainPage mainPage = new MainPage();
+    MenuPage menuPage = new MenuPage();
+    CartPage cartPage = new CartPage();
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
 
     @DisplayName("Проверка доступности главной страницы")
     void mainPageIsAccessible() {
-        pages.mainPage.openPage();
-        pages.mainPage.checkLogo();
+       mainPage.openPage();
+       mainPage.checkLogo();
     }
 
     @Test
 
     @DisplayName("Добавление пиццы в корзину")
     void addActionTrojkaToCart() {
-        pages.menuPage.openSalePage();
-        pages.menuPage.addTrojkaToCart();
-        pages.cartPage.openCart();
-        pages.cartPage.checkTrojkaInCart();
+        menuPage.openSalePage();
+        menuPage.addTrojkaToCart();
+        cartPage.openCart();
+        cartPage.checkTrojkaInCart();
     }
 
     @Test
 
     @DisplayName("Проверка открытия страницы для регистрации")
     void openRegistrationPage() {
-        pages.mainPage.openPage();
-        pages.mainPage.openRegistrationPage();
-        pages.registrationPage.checkRegistrationTitle();
+        mainPage.openPage();
+        mainPage.openRegistrationPage();
+        registrationPage.checkRegistrationTitle();
     }
 
     @Test
 
     @DisplayName("Проверка короткого номера телефона Доставки")
     void checkShortPhoneNumber() {
-        pages.mainPage.openPage();
-        pages.mainPage.checkShortNumber();
+       mainPage.openPage();
+       mainPage.checkShortNumber();
     }
 
     @Test
 
     @DisplayName("Проверка возможности выбора города")
     void checkPossibilityToChangeLocation() {
-        pages.mainPage.openPage();
-        pages.mainPage.openChangeCityPopup();
-        pages.mainPage.checkChangeCityPopup();
+        mainPage.openPage();
+        mainPage.openChangeCityPopup();
+        mainPage.checkChangeCityPopup();
     }
 }

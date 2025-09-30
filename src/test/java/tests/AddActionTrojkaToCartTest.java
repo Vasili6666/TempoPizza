@@ -2,20 +2,23 @@ package tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.Pages;
+import pages.CartPage;
+import pages.MenuPage;
+
 import static io.qameta.allure.Allure.step;
 public class AddActionTrojkaToCartTest extends TestBase{
 
-    Pages pages = new Pages();
+    MenuPage menuPage = new MenuPage();
+    CartPage cartPage = new CartPage();
 
     @Test
     @DisplayName("Добавление пиццы в корзину")
     void checkAddActionTrojkaToCartTest() {
 
-        pages.menuPage.openSalePage();
-        pages.menuPage.addTrojkaToCart();
-        pages.cartPage.openCart();
-        pages.cartPage.checkTrojkaInCart();
+        menuPage.openSalePage();
+        menuPage.addTrojkaToCart();
+        cartPage.openCart();
+        cartPage.checkTrojkaInCart();
     }
 
 

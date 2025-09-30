@@ -3,19 +3,23 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.Pages;
+import pages.MainPage;
+import pages.RegistrationPage;
+
 import static io.qameta.allure.Allure.step;
 
 public class OpenRegistrationPageTest extends TestBase {
 
-    Pages pages = new Pages();
+    RegistrationPage registrationPage = new RegistrationPage();
+    MainPage mainPage = new MainPage();
+
     @Test
     @Tag("smoke")
     @DisplayName("Проверка открытия страницы для регистрации")
     void checkOpenRegistrationPage() {
-        pages.mainPage.openPage();
-        pages.mainPage.openRegistrationPage();
-        pages.registrationPage.checkRegistrationTitle();
+        mainPage.openPage();
+        mainPage.openRegistrationPage();
+        registrationPage.checkRegistrationTitle();
     }
 
 }

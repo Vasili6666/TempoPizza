@@ -43,7 +43,8 @@ public class Attach {
     }
 
     public static URL getVideoUrl(String sessionId) {
-        String videoUrl = "https://"+ System.getProperty("videoHost", "selenoid.autotests.cloud") + "/video/" + sessionId + ".mp4";
+        //String videoUrl = "https://"+ System.getProperty("videoHost", "selenoid.autotests.cloud") + "/video/" + sessionId + ".mp4";
+        String videoUrl = "https://"+ System.getProperty("remoteDriverUrl", "selenoid.autotests.cloud") + "/video/" + sessionId + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {
@@ -56,3 +57,4 @@ public class Attach {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
 }
+//-DvideoHost=${REMOTE_DRIVER_URL}

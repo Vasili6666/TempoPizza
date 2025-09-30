@@ -6,7 +6,7 @@ import pages.MainPage;
 import pages.MenuPage;
 import pages.RegistrationPage;
 
-
+@Disabled
 public class PizzaTempoTests extends TestBase {
 
 

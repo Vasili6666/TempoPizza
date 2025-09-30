@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -7,33 +8,45 @@ import static com.codeborne.selenide.Condition.*;
 
 public class MainPage {
 
-    @Step("Открываем главную страинцу")
+
+    private final String urlMainPage = "https://www.pizzatempo.by";
+    private final SelenideElement logo = $(".logo span");
+    private final String logoText = "Пицца Темпо";
+    private final SelenideElement registrationLink = $("a[href='https://www.pizzatempo.by/registration/']");
+    private final SelenideElement shortNumber = $(".delivery .short_number");
+    private final String shortNumberText = "7773";
+    private final String attribute = "title";
+    private final SelenideElement regionalLink = $(".choose_region_link");
+    private final String regionalText = "Выберите город доставки";
+
+
+    @Step("Открываем главную страницу")
     public void openPage() {
-        open("https://www.pizzatempo.by");
+        open(urlMainPage);
     }
 
     @Step("Проверяем Логотип")
     public void checkLogo() {
-        $(".logo span").shouldHave(attribute("title", "Пицца Темпо"));
+        logo.shouldHave(attribute(attribute, logoText));
     }
 
     @Step("Открываем страницу регистрации")
     public void openRegistrationPage() {
-        $("a[href='https://www.pizzatempo.by/registration/']").click();
+        registrationLink.click();
     }
 
-    @Step("Прверяем наличие короткого номера")
+    @Step("Проверяем наличие короткого номера")
     public void checkShortNumber() {
-        $(".delivery .short_number").shouldHave(text("7773"));
+        shortNumber.shouldHave(text(shortNumberText));
     }
 
     @Step("Открываем окно смены локации")
     public void openChangeCityPopup() {
-        $(".choose_region_link").click();
+        regionalLink.click();
     }
 
     @Step("Проверяем открытие окна смены локации")
     public void checkChangeCityPopup() {
-        $(".choose_region .window").shouldHave(text("Выберите город доставки"));
+        regionalLink.shouldHave(text(regionalText));
     }
 }
